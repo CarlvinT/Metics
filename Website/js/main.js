@@ -11,8 +11,16 @@ myapp.config(['$routeProvider', function($routeProvider){
       templateUrl: 'views/otherpage.html',
       controller:'MainController'
     })
+    .when('/questions', {
+      templateUrl: 'views/questions.html',
+      controller:'MainController'
+    })
+    .when('/login', {
+      templateUrl: 'views/login.html',
+      controller:'MainController'
+    })
     .otherwise({
-      redirectTo:'/home'
+      redirectTo:'/login'
     })
 }]);
 
@@ -20,3 +28,8 @@ myapp.config(['$routeProvider', function($routeProvider){
 myapp.controller('MainController', ['$scope',function($scope){
 
 }]);
+
+$scope.Testing = function()
+{
+  alert("I am an alert box!");
+}
