@@ -19,7 +19,7 @@ myapp.config(['$routeProvider', function($routeProvider){
       templateUrl: 'views/login.html',
       controller:'MainController'
     })
-    .when('/graphing', {
+    .when('/graph', {
       templateUrl: 'views/graphing.html',
       controller:'MainController'
     })
@@ -30,15 +30,16 @@ myapp.config(['$routeProvider', function($routeProvider){
 
 
 myapp.controller('MainController', ['$scope',function($scope){
-  let myChart = document.getElementById('myChart').getContext('2d');
 
+  // Charting code
+  let myChart = document.getElementById('myChart').getContext('2d');
   let massPopChart = new Chart(myChart,{
     type:'bar',
     data:{
       labels:['Hoofdpijn','SpierPijn','Lorem','Lorem','Lorem'],
       datasets:[{
         label:'Symptomen',
-        data:[200,400,500,100,800],
+        data:[Math.floor(Math.random() * 1000) + 10,Math.floor(Math.random() * 1000) + 10,Math.floor(Math.random() * 1000) + 10,Math.floor(Math.random() * 1000) + 10,175,0],// zorgt voor errors maar zorgt dat 0 de kleinste waarde is
         backgroundColor:['rgba(255,99,132,0.6)','rgba(0,99,132,0.6)','rgba(255,0,132,0.6)','rgba(255,99,0,0.6)','rgba(255,255,132,0.6)'],
         borderWidth:1,
         hoverBorderWidth:3,
@@ -56,6 +57,24 @@ myapp.controller('MainController', ['$scope',function($scope){
 
     }
   });
+
+// geolocation
+  $scope.getGeolocation = function()
+  {
+    navigator.geolocation.getCurrentPosition(function(location) {
+      console.log(location.coords.latitude);
+      console.log(location.coords.longitude);
+      console.log(location.coords.accuracy);
+    });
+  }
+
+
+  if ("geolocation" in navigator) {
+    console.log("working");
+    $scope.getGeolocation();
+  } else {
+    console.log("gg")
+  }
 
 
 /*$scope.Testing = function()
