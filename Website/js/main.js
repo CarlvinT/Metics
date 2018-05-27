@@ -11,6 +11,10 @@ myapp.config(['$routeProvider', function($routeProvider){
       templateUrl: 'views/otherpage.html',
       controller:'MainController'
     })
+    .when('/other', {
+      templateUrl: 'views/questions.html',
+      controller:'MainController'
+    })
     .when('/questions', {
       templateUrl: 'views/questions.html',
       controller:'MainController'
